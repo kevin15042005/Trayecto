@@ -55,24 +55,21 @@ export default function Datos() {
 
   const handleSubmit = async () => {
     try {
-      const res = await fetch(
-        "http://trayecto.onrender.com/api/trayecto/trayectosNuevos",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fecha,
-            usuario,
-            usuarioPrueba,
-            origen,
-            destino,
-            fechaServicio,
-            horaServicio,
-          }),
-        }
-      );
+      const res = await fetch("/api/trayecto/trayectosNuevos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fecha,
+          usuario,
+          usuarioPrueba,
+          origen,
+          destino,
+          fechaServicio,
+          horaServicio,
+        }),
+      });
 
       const data = await res.json();
       if (res.ok) {
@@ -103,12 +100,9 @@ export default function Datos() {
     }
 
     try {
-      const res = await fetch(
-        `http://trayecto.onrender.com/api/trayecto/${idTrayectoEliminar}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`/api/trayecto/${idTrayectoEliminar}`, {
+        method: "DELETE",
+      });
 
       const data = await res.json();
       if (res.ok) {
@@ -127,9 +121,7 @@ export default function Datos() {
 
   const obtenerTrayectos = async () => {
     try {
-      const res = await fetch(
-        "http://trayecto.onrender.com/api/trayecto/obtenerTrayectos"
-      );
+      const res = await fetch("/api/trayecto/obtenerTrayectos");
       const data = await res.json();
       setTrayectos(data);
     } catch (error) {
