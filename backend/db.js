@@ -1,7 +1,7 @@
-import mysql from "mysql";
+import mysql from "mysql2";
 import dotenv from "dotenv";
 
-// Cargar las variables del archivo .env
+
 dotenv.config();
 
 const db = mysql.createConnection({
