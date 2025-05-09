@@ -74,7 +74,7 @@ export default function App() {
 
     try {
       const res = await fetch(
-        "http://trayecto.onrender.com/administrador/crear",
+        "/administrador/crear",
         {
           method: "POST",
           headers: {
@@ -115,7 +115,7 @@ export default function App() {
 
     try {
       const res = await fetch(
-        `http://trayecto.onrender.com/${user.id_Administrador}`,
+        `/${user.id_Administrador}`,
         {
           method: "PUT",
           headers: {
