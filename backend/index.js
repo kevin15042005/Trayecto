@@ -11,7 +11,7 @@ app.use("/administrador", administrador);
 app.use("/api/trayecto", IngresoTrayecto)   
 
 app.listen(8080, () => {
-    console.log("Servidor corriendo en http://localhost:8080");
+    console.log("Servidor corriendo en http://trayecto.onrender.com");
 });
 process.on("SIGINT", () => {
     db.end((err) => {
