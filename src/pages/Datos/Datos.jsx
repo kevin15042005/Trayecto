@@ -104,7 +104,7 @@ export default function Datos() {
 
     try {
       const res = await fetch(
-        `http://trayecto.onrender.com/api/trayecto/${idTrayectoEliminar}`,
+        `/api/trayecto/${idTrayectoEliminar}`,
         {
           method: "DELETE",
         }
