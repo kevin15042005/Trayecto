@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
 });
 
 // Conexión a la base de datos MySQL
-app.listen(process.env.PORT || 8080, () => {
+app.listen(process.env.PORT || "http://trayecto.onrender.com", () => {
   console.log("Servidor corriendo en http://trayecto.onrender.com");
   console.log("Conectado a la base de datos MySQL");
 });
