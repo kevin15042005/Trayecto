@@ -5,12 +5,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD
+  host: process.env.DB_HOST || "hopper.proxy.rlwy.net",
+  port: process.env.DB_PORT || "10852",
+  user: process.env.DB_USER || "root",
+  database: process.env.DB_NAME || "railway",
+  password: process.env.DB_PASSWORD || "BeBeLboUXeGNyITkIspfzLYpejycICbH"
 });
+
+
 
 db.connect((err) => {
   if (err) {
@@ -21,3 +23,5 @@ db.connect((err) => {
 });
 
 export default db;
+
+
