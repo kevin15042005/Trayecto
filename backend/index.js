@@ -13,7 +13,6 @@ app.use("/api/trayecto", IngresoTrayecto)
 app.listen(8080, () => {
     console.log("Servidor corriendo en http://localhost:8080");
 });
-"mysql -h hopper.proxy.rlwy.net -u root -p BeBeLboUXeGNyITkIspfzLYpejycICbH --port 10852 --protocol=TCP railway"
 process.on("SIGINT", () => {
     db.end((err) => {
         if (err) console.log("Error cerrando a MYSQL", err);
