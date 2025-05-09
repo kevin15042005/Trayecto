@@ -69,5 +69,23 @@ router.post("/trayectosNuevos", (req, res) => {
     }
   );
 });
+router.delete("/:id_Trayecto", (req, res) => {
+  const id_Trayecto = req.params.id_Trayecto;
+  const getTrayecto = 'SELECT * FROM trayecto WHERE id_Trayecto = ?';
+
+  db.query(getTrayecto, [id_Trayecto], (err, result) => {
+    if (err) return res.status(500).json({ error: "Error buscando trayecto" });
+    if (!result || result.length === 0) {
+      return res.status(404).json({ error: "Trayecto no encontrado" });
+    }
+    
+    const deleteQuery = 'DELETE FROM trayecto WHERE id_Trayecto = ?';
+
+    db.query(deleteQuery, [id_Trayecto], (err) => {
+      if (err) return res.status(500).json({ error: "Error al eliminar trayecto" });
+      return res.status(200).json({ message: "Trayecto eliminado correctamente" });
+    });
+  });
+});
 
 export default router;

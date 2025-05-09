@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./index.css";
+import "./App.css";
 import {  useNavigate } from "react-router-dom";
 
 export default function App() {
@@ -44,7 +44,7 @@ export default function App() {
 
       const data = await res.json();
       if (res.ok) {
-        alert("Inicio de sesión correcto");
+        alert("✅Inicio de sesión correcto");
         useNavigation("/datos")
         localStorage.setItem("usuario", JSON.stringify(data.usuario));
         localStorage.setItem("ingreso", "true");
@@ -53,7 +53,7 @@ export default function App() {
       }
     } catch (err) {
       console.error("Error al iniciar sesión", err);
-      alert("Error al iniciar sesión");
+      alert("❌Error al iniciar sesión");
       localStorage.setItem("ingreso", "false");
     }
   };
@@ -144,7 +144,7 @@ export default function App() {
             <form className="texto" onSubmit={handleIniciar}>
               <h2>Inicio de sesión</h2>
               <div className="input-box">
-                <label >Usuario</label>
+                <label  className="Ingreso-CC">Usuario</label>
                 <input
                   type="text"
                   id="correo"
@@ -153,7 +153,7 @@ export default function App() {
                   name="Correo"
                   required
                 />
-                <label htmlFor="contraseña">Contraseña</label>
+                <label htmlFor="contraseña" className="Ingreso-CC">Contraseña</label>
                 <input
                   type={showContraseña ? "text" : "password"}
                   id="contraseña"
@@ -162,16 +162,20 @@ export default function App() {
                   name="contraseña"
                   required
                 />
-                <div className="input-check">
+               
+                
+
+               <div className="input-check">
                   <input
                     type="checkbox"
                     id="mostrar-contraseña"
                     onChange={() => setShowContraseña(!showContraseña)}
                   />
-                  <label htmlFor="mostrar-contraseña">Mostrar contraseña</label>
+                  <label htmlFor="mostrar-contraseña" className="Mostrar-Contraseña">Mostrar contraseña</label>
                 </div>
+
                 <div className="boton-ingresar">
-                  <button type="submit" className="ingresar">
+                  <button type="submit" >
                     Ingresar
                   </button>
                   <div className="registra">

@@ -5,38 +5,43 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.texto{
+  background: linear-gradient(to right,#ffae00d4,#ff0000d4 );
+  border-radius: 20px;
+  padding: 20px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.input-box{
+  display:flex;
+  flex-direction:column;
+  padding: 20px;
+  border-radius: 20px;
+  
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.input-box .field{
+  padding: 20px;
+  border-radius: 15px;
+  border: none;
+  margin: 15px 8rem;
+  background: #0088ffaf;
+  color: black;
+}
+.input-box .field::placeholder{
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+}
+.input-box .Ingreso-CC{
+  margin: 5px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Mostrar-Contraseña{
+  margin: 20px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.boton-ingresar button{
+  margin: 10px 0px 11px 0px;
+  padding: 11px;
 }
