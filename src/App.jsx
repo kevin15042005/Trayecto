@@ -30,16 +30,19 @@ export default function App() {
     const contraseña = e.target.contraseña.value;
 
     try {
-      const res = await fetch("/administrador/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          correo_Administrador: e.target.correo.value,
-          contraseña_Administrador: e.target.contraseña.value,
-        }),
-      });
+      const res = await fetch(
+        "/administrador/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo_Administrador: e.target.correo.value,
+            contraseña_Administrador: e.target.contraseña.value,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
@@ -70,16 +73,19 @@ export default function App() {
     }
 
     try {
-      const res = await fetch("/administrador/crear", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          correo_Administrador: correoCrear,
-          contraseña_Administrador: contraseñaCrear,
-        }),
-      });
+      const res = await fetch(
+        "http://trayecto.onrender.com/administrador/crear",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo_Administrador: correoCrear,
+            contraseña_Administrador: contraseñaCrear,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
@@ -108,16 +114,19 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(` /${user.id_Administrador}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contraseñaAntigua: contraseñaAntigua,
-          contraseñaNueva: contraseñaNueva,
-        }),
-      });
+      const res = await fetch(
+        `http://trayecto.onrender.com/${user.id_Administrador}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contraseñaAntigua: contraseñaAntigua,
+            contraseñaNueva: contraseñaNueva,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
