@@ -69,7 +69,7 @@ router.post("/trayectosNuevos", (req, res) => {
     }
   );
 });
-router.delete('/:idTrayectoEliminar', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id;
   const q = 'DELETE FROM trayectos WHERE id = ?';
 
