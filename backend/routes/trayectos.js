@@ -3,19 +3,18 @@ import db from "../db.js";
 
 const router = express.Router();
 
-
 router.get("/obtenerTrayectos", (req, res) => {
   const q = "SELECT * FROM trayecto ORDER BY fecha_Solicitud DESC";
 
   db.query(q, (err, result) => {
     if (err) {
-      return res.status(500).json({ message: "Error al consultar trayectos", error: err });
+      return res
+        .status(500)
+        .json({ message: "Error al consultar trayectos", error: err });
     }
     res.status(200).json(result);
   });
 });
-
-
 
 router.post("/trayectosNuevos", (req, res) => {
   const {
@@ -55,7 +54,7 @@ router.post("/trayectosNuevos", (req, res) => {
       destino,
       fechaServicio,
       horaServicio,
-      1
+      1,
     ],
     (err, result) => {
       if (err) {
@@ -69,22 +68,15 @@ router.post("/trayectosNuevos", (req, res) => {
     }
   );
 });
-router.delete("/:id_Trayecto", (req, res) => {
-  const id_Trayecto = req.params.id_Trayecto;
-  const getTrayecto = 'SELECT * FROM trayecto WHERE id_Trayecto = ?';
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  const q = "DELETE FROM trayectos WHERE id = ?";
 
-  db.query(getTrayecto, [id_Trayecto], (err, result) => {
-    if (err) return res.status(500).json({ error: "Error buscando trayecto" });
-    if (!result || result.length === 0) {
-      return res.status(404).json({ error: "Trayecto no encontrado" });
-    }
-    
-    const deleteQuery = 'DELETE FROM trayecto WHERE id_Trayecto = ?';
-
-    db.query(deleteQuery, [id_Trayecto], (err) => {
-      if (err) return res.status(500).json({ error: "Error al eliminar trayecto" });
-      return res.status(200).json({ message: "Trayecto eliminado correctamente" });
-    });
+  db.query(q, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    return res
+      .status(200)
+      .json({ mensaje: "Trayecto eliminado correctamente" });
   });
 });
 

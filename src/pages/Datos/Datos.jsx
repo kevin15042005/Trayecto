@@ -56,7 +56,7 @@ export default function Datos() {
   const handleSubmit = async () => {
     try {
       const res = await fetch(
-        "http://trayecto.onrender.com/api/trayecto/trayectosNuevos",
+        "http://localhost:8080/api/trayecto/trayectosNuevos",
         {
           method: "POST",
           headers: {
@@ -104,7 +104,7 @@ export default function Datos() {
 
     try {
       const res = await fetch(
-        `http://trayecto.onrender.com/api/trayecto/${idTrayectoEliminar}`,
+        `http://localhost:8080/api/trayecto/${idTrayectoEliminar}`,
         {
           method: "DELETE",
         }
@@ -128,7 +128,7 @@ export default function Datos() {
   const obtenerTrayectos = async () => {
     try {
       const res = await fetch(
-        "http://trayecto.onrender.com/api/trayecto/obtenerTrayectos"
+        "http://localhost:8080/api/trayecto/obtenerTrayectos"
       );
       const data = await res.json();
       setTrayectos(data);

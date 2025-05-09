@@ -1,16 +1,11 @@
 import mysql from "mysql2";
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD
+  host: "localhost",
+  user: "root",
+  password: "Edi9708*",
+  database: "uber",
 });
-
-
- 
-
 db.connect((err) => {
   if (err) {
       console.error("Error al concetar en la base de datos", err)
