@@ -10,7 +10,12 @@ app.use(cors());
 app.use("/administrador", administrador);
 app.use("/api/trayecto", IngresoTrayecto);
 
-app.listen(8080, () => {
+app.get('/', (req, res) => {
+    res.send('🚀 Backend Trayecto activo');
+  });
+  
+
+app.listen(process.env.PORT, () => {
   console.log("Servidor corriendo en http://trayecto.onrender.com");
 });
 process.on("SIGINT", () => {
