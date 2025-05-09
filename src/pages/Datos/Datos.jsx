@@ -128,7 +128,7 @@ export default function Datos() {
   const obtenerTrayectos = async () => {
     try {
       const res = await fetch(
-        "http://trayecto.onrender.com/api/trayecto/obtenerTrayectos"
+        "/api/trayecto/obtenerTrayectos"
       );
       const data = await res.json();
       setTrayectos(data);
