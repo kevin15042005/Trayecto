@@ -56,7 +56,7 @@ export default function Datos() {
   const handleSubmit = async () => {
     try {
       const res = await fetch(
-        "http://localhost:8080/api/trayecto/trayectosNuevos",
+        "http://trayecto.onrender.com/api/trayecto/trayectosNuevos",
         {
           method: "POST",
           headers: {
@@ -104,7 +104,7 @@ export default function Datos() {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/api/trayecto/${idTrayectoEliminar}`,
+        `http://trayecto.onrender.com/api/trayecto/${idTrayectoEliminar}`,
         {
           method: "DELETE",
         }
@@ -128,7 +128,7 @@ export default function Datos() {
   const obtenerTrayectos = async () => {
     try {
       const res = await fetch(
-        "http://localhost:8080/api/trayecto/obtenerTrayectos"
+        "http://trayecto.onrender.com/api/trayecto/obtenerTrayectos"
       );
       const data = await res.json();
       setTrayectos(data);
@@ -165,9 +165,7 @@ export default function Datos() {
               <button
                 className="close-button"
                 onClick={() => setShowCreatePopup(false)}
-              >
-                
-              </button>
+              ></button>
             </div>
 
             <div className="form-container">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const [currentForm, setCurrentForm] = useState(() => {
@@ -10,7 +10,6 @@ export default function App() {
   const [correoCrear, setCorreoCrear] = useState("");
   const [contraseñaCrear, setContraseñaCrear] = useState("");
   const [showContraseña, setShowContraseña] = useState(false);
-
 
   const useNavigation = useNavigate();
 
@@ -31,21 +30,24 @@ export default function App() {
     const contraseña = e.target.contraseña.value;
 
     try {
-      const res = await fetch("http://localhost:8080/administrador/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          correo_Administrador: e.target.correo.value,
-          contraseña_Administrador: e.target.contraseña.value,
-        }),
-      });
+      const res = await fetch(
+        "http://trayecto.onrender.com/administrador/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo_Administrador: e.target.correo.value,
+            contraseña_Administrador: e.target.contraseña.value,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
         alert("Inicio de sesión correcto");
-        useNavigation("/datos")
+        useNavigation("/datos");
         localStorage.setItem("usuario", JSON.stringify(data.usuario));
         localStorage.setItem("ingreso", "true");
       } else {
@@ -71,16 +73,19 @@ export default function App() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/administrador/crear", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          correo_Administrador: correoCrear,
-          contraseña_Administrador: contraseñaCrear,
-        }),
-      });
+      const res = await fetch(
+        "http://trayecto.onrender.com/administrador/crear",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            correo_Administrador: correoCrear,
+            contraseña_Administrador: contraseñaCrear,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
@@ -109,16 +114,19 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:8080/${user.id_Administrador}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-      contraseñaAntigua: contraseñaAntigua,
-  contraseñaNueva: contraseñaNueva,
-        }),
-      });
+      const res = await fetch(
+        `http://trayecto.onrender.com/${user.id_Administrador}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contraseñaAntigua: contraseñaAntigua,
+            contraseñaNueva: contraseñaNueva,
+          }),
+        }
+      );
 
       const data = await res.json();
       if (res.ok) {
@@ -144,7 +152,7 @@ export default function App() {
             <form className="texto" onSubmit={handleIniciar}>
               <h2>Inicio de sesión</h2>
               <div className="input-box">
-                <label  className="Ingreso-CC">Usuario</label>
+                <label className="Ingreso-CC">Usuario</label>
                 <input
                   type="text"
                   id="correo"
@@ -153,7 +161,9 @@ export default function App() {
                   name="Correo"
                   required
                 />
-                <label htmlFor="contraseña" className="Ingreso-CC">Contraseña</label>
+                <label htmlFor="contraseña" className="Ingreso-CC">
+                  Contraseña
+                </label>
                 <input
                   type={showContraseña ? "text" : "password"}
                   id="contraseña"
@@ -162,22 +172,23 @@ export default function App() {
                   name="contraseña"
                   required
                 />
-               
-                
 
-               <div className="input-check">
+                <div className="input-check">
                   <input
                     type="checkbox"
                     id="mostrar-contraseña"
                     onChange={() => setShowContraseña(!showContraseña)}
                   />
-                  <label htmlFor="mostrar-contraseña" className="Mostrar-Contraseña">Mostrar contraseña</label>
+                  <label
+                    htmlFor="mostrar-contraseña"
+                    className="Mostrar-Contraseña"
+                  >
+                    Mostrar contraseña
+                  </label>
                 </div>
 
                 <div className="boton-ingresar">
-                  <button type="submit" >
-                    Ingresar
-                  </button>
+                  <button type="submit">Ingresar</button>
                   <div className="registra">
                     {/*
                     <button
