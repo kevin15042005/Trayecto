@@ -7,5 +7,6 @@ export default defineConfig({
     port: 1000,
     host: true,
     allowedHosts:['trayecto.onrender.com'],
-  }
+  },
+  plugins: [react()],
 })
