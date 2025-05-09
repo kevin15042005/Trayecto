@@ -12,7 +12,7 @@ export default function App() {
   const [showContraseña, setShowContraseña] = useState(false);
 
 
-  const useNavigation = useNavigate();
+  const navigate  = useNavigate();
 
   const changeForm = (formName) => {
     setCurrentForm(formName);
@@ -31,7 +31,7 @@ export default function App() {
     const contraseña = e.target.contraseña.value;
 
     try {
-      const res = await fetch("http://localhost:8080/administrador/login", {
+      const res = await fetch("http://trayecto.onrender.com/administrador/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export default function App() {
       const data = await res.json();
       if (res.ok) {
         alert("✅Inicio de sesión correcto");
-        useNavigation("/datos")
+        navigate("/datos")
         localStorage.setItem("usuario", JSON.stringify(data.usuario));
         localStorage.setItem("ingreso", "true");
       } else {
@@ -71,7 +71,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch("http://localhost:8080/administrador/crear", {
+      const res = await fetch("http://trayecto.onrender.com/administrador/crear", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export default function App() {
     }
 
     try {
-      const res = await fetch(`http://localhost:8080/${user.id_Administrador}`, {
+      const res = await fetch(`http://trayecto.onrender.com/${user.id_Administrador}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -150,7 +150,7 @@ export default function App() {
                   id="correo"
                   className="field"
                   placeholder="Correo"
-                  name="Correo"
+                  name="correo"
                   required
                 />
                 <label htmlFor="contraseña" className="Ingreso-CC">Contraseña</label>
