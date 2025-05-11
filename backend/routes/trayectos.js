@@ -70,10 +70,10 @@ router.post("/trayectosNuevos", (req, res) => {
   );
 });
 router.delete('/:id', (req, res) => {
-  const id = req.params.id;
-  const q = 'DELETE FROM trayecto WHERE id = ?';
+  const id_Trayecto = req.params.id;
+  const q = 'DELETE FROM trayecto WHERE id_Trayecto = ?';
 
-  db.query(q, [id], (err, result) => {
+  db.query(q, [id_Trayecto], (err, result) => {
     if (err) return res.status(500).json({ error: err });
     return res.status(200).json({ mensaje: 'Trayecto eliminado correctamente' });
   });
