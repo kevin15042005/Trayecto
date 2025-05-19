@@ -490,10 +490,7 @@ export default function Datos() {
             </button>
           </div>
 
-          <button className="hide-button" onClick={ocultarTodas}>
-            Ocultar Todos
-          </button>
-          
+        
           <button className="show-button" onClick={mostrarTodas}>
             Mostrar Todos
           </button>
