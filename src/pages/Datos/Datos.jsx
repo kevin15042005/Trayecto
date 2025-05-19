@@ -16,6 +16,7 @@ export default function Datos() {
   const [trayectos, setTrayectos] = useState([]);
   const [idTrayectoEliminar, setIdTrayectoEliminar] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [filasOcultas, setFilasOcultas] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,6 +28,25 @@ export default function Datos() {
     setDestino("");
     setFechaServicio("");
     setHoraServicio("");
+  };
+
+  const validarFechas = () => {
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    
+    const fechaSolicitud = new Date(fecha);
+    if (fechaSolicitud < hoy) {
+      alert("La fecha de solicitud no puede ser anterior al día actual");
+      return false;
+    }
+    
+    const fechaServ = new Date(fechaServicio);
+    if (fechaServ < hoy) {
+      alert("La fecha de servicio no puede ser anterior al día actual");
+      return false;
+    }
+    
+    return true;
   };
 
   const validarCampos = () => {
@@ -48,6 +68,9 @@ export default function Datos() {
     }
     if (origen === destino) {
       alert("El origen no puede ser igual al destino");
+      return false;
+    }
+    if (!validarFechas()) {
       return false;
     }
     return true;
@@ -146,6 +169,22 @@ export default function Datos() {
     navigate("/");
   };
 
+  const toggleFila = (id) => {
+    setFilasOcultas(prev => 
+      prev.includes(id) 
+        ? prev.filter(item => item !== id) 
+        : [...prev, id]
+    );
+  };
+
+  const ocultarTodas = () => {
+    setFilasOcultas(trayectos.map(t => t.id_Trayecto));
+  };
+
+  const mostrarTodas = () => {
+    setFilasOcultas([]);
+  };
+
   const filteredTrayectos = trayectos.filter((trayecto) =>
     Object.values(trayecto).some(
       (value) =>
@@ -166,7 +205,7 @@ export default function Datos() {
                 className="close-button"
                 onClick={() => setShowCreatePopup(false)}
               >
-                
+                ×
               </button>
             </div>
 
@@ -178,6 +217,7 @@ export default function Datos() {
                   value={fecha}
                   onChange={(e) => setFecha(e.target.value)}
                   required
+                  min={new Date().toISOString().split('T')[0]}
                 />
               </div>
 
@@ -264,6 +304,7 @@ export default function Datos() {
                   value={fechaServicio}
                   onChange={(e) => setFechaServicio(e.target.value)}
                   required
+                  min={new Date().toISOString().split('T')[0]}
                 />
               </div>
 
@@ -384,16 +425,20 @@ export default function Datos() {
                 <th>Destino</th>
                 <th>Fecha Servicio</th>
                 <th>Hora Servicio</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {filteredTrayectos.length === 0 ? (
                 <tr>
-                  <td colSpan="8">No hay trayectos registrados</td>
+                  <td colSpan="9">No hay trayectos registrados</td>
                 </tr>
               ) : (
                 filteredTrayectos.map((t, i) => (
-                  <tr key={i}>
+                  <tr 
+                    key={i}
+                    style={{ display: filasOcultas.includes(t.id_Trayecto) ? 'none' : 'table-row' }}
+                  >
                     <td>{t.id_Trayecto}</td>
                     <td>{new Date(t.fecha_Solicitud).toLocaleDateString()}</td>
                     <td>{t.usuario}</td>
@@ -402,6 +447,14 @@ export default function Datos() {
                     <td>{t.destino}</td>
                     <td>{new Date(t.fecha_Servicio).toLocaleDateString()}</td>
                     <td>{t.hora_Servicio}</td>
+                    <td>
+                      <button 
+                        className="toggle-button"
+                        onClick={() => toggleFila(t.id_Trayecto)}
+                      >
+                        {filasOcultas.includes(t.id_Trayecto) ? 'Mostrar' : 'Ocultar'}
+                      </button>
+                    </td>
                   </tr>
                 ))
               )}
@@ -436,6 +489,14 @@ export default function Datos() {
               Eliminar
             </button>
           </div>
+
+          <button className="hide-button" onClick={ocultarTodas}>
+            Ocultar Todos
+          </button>
+          
+          <button className="show-button" onClick={mostrarTodas}>
+            Mostrar Todos
+          </button>
 
           <button className="logout-button" onClick={CerrarSesion}>
             Cerrar Sesión
